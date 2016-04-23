@@ -1,8 +1,6 @@
 # Noughts and Crosses
 # SovietKetchup
-# v0.3.1
-
-VALID = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
+# v0.5.0
 
 # The board the game is played on
 class Board
@@ -20,8 +18,10 @@ class Board
   def place spot, side
     if instance_variable_get("@#{spot}") == " "
       instance_variable_set("@#{spot}", side)
+      True
     else
       puts "\nNot a valid spot"
+      False
     end
   end
 
@@ -40,12 +40,32 @@ class Player
 
 end
 
-board = Board.new
-carl_king_of_ducks = Player.new "X"
-carter_with_banana = Player.new "O"
+# Functions for turn taking logic
+def game
 
-board.draw
-board.place "a", "X"
-board.draw
-board.place "a", "O"
-board.draw
+  player = "X"
+  rounds = 0
+  a_win = false
+
+  until a_win == true
+    # Draw condition
+    if rounds == 8
+      a_win = true
+      winner = "DRAW"
+    end
+
+    # Announcement Text
+    puts "This is round ##{rounds + 1}"
+    puts "#{player}'s turn'"
+
+
+    rounds += 1
+  end
+
+  puts "GAME OVER :: #{winner}"
+
+end
+
+# Run the game
+puts "The game will start with Xs"
+game
