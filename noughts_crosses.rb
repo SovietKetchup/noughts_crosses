@@ -1,6 +1,6 @@
 # Noughts and crosses
 # SovietKetchup
-# v0.1.0
+# v0.2.0
 
 X = "X"; O = "O"
 
@@ -20,25 +20,6 @@ class Board
 
   # Place a peice on the board
   def place spot, peice
-    # if spot == "a"
-    #   @a = peice
-    # elsif spot == "b"
-    #   @b = peice
-    # elsif spot == "c"
-    #   @c = peice
-    # elsif spot == "d"
-    #   @d = peice
-    # elsif spot == "e"
-    #   @e = peice
-    # elsif spot == "f"
-    #   @f = peice
-    # elsif spot == "g"
-    #   @g = peice
-    # elsif spot == "h"
-    #   @h = peice
-    # elsif spot == "i"
-    #   @i = peice
-    # end
     instance_variable_set("@#{spot}", peice)
   end
 
@@ -49,6 +30,14 @@ class Player
   # Choose X or O
   def initialize side
     @side = side
+  end
+
+  # Make the players move
+  def take_turn
+  end
+
+  # Check if player has won
+  def won?
   end
 
 end
