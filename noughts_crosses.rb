@@ -1,6 +1,6 @@
-# Noughts and crosses
+# Noughts and Crosses
 # SovietKetchup
-# v0.2.0
+# v0.3.1
 
 VALID = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
 
@@ -8,28 +8,20 @@ VALID = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
 class Board
   # Create a board with each spot blank
   def initialize
-    ('a'..'i').map{|l| instance_variable_set("@#{l}", " ")}
+    ('a'..'i').map{|spot| instance_variable_set("@#{spot}", " ")}
   end
 
   # Draw the board with each spot placed in
   def draw
-    puts " #{@a} | #{@b} | #{@c} \n --------- \n #{@d} | #{@e} | #{@f} \n --------- \n #{@g} | #{@h} | #{@i} \n\n"
+    puts "\n #{@a} | #{@b} | #{@c} \n --------- \n #{@d} | #{@e} | #{@f} \n --------- \n #{@g} | #{@h} | #{@i} "
   end
 
-  # Place a peice on the board
-  def place spot, peice
-    if valid?(spot)
-      instance_variable_set("@#{spot}", peice)
-    else
-      puts "Not a valid spot"
-    end
-  end
-
-  def valid? spot
+  # Place a O or X on the board
+  def place spot, side
     if instance_variable_get("@#{spot}") == " "
-      True
+      instance_variable_set("@#{spot}", side)
     else
-      False
+      puts "\nNot a valid spot"
     end
   end
 
@@ -40,12 +32,6 @@ class Player
   # Choose X or O
   def initialize side
     @side = side
-
-  end
-
-  # Make the players move
-  def take_turn spot
-    puts "#{@side}'s turn."
   end
 
   # Check if player has won
@@ -55,6 +41,11 @@ class Player
 end
 
 board = Board.new
-
 carl_king_of_ducks = Player.new "X"
 carter_with_banana = Player.new "O"
+
+board.draw
+board.place "a", "X"
+board.draw
+board.place "a", "O"
+board.draw
