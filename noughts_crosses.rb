@@ -117,4 +117,12 @@ end
 
 # Run the game
 puts "The game will start with Xs"
+puts "The board is as follows:
+ a | b | c
+----------
+ d | e | f
+----------
+ g | h | i
+"
+
 game board, p1, p2
