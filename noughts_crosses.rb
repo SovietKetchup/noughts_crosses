@@ -1,6 +1,6 @@
 # Noughts and Crosses
 # SovietKetchup
-# v0.5.1
+# v0.5.3
 
 # The board the game is played on
 class Board
@@ -54,10 +54,18 @@ def game board
     puts "\nThis is round ##{rounds + 1}"
     puts "#{player}'s turn"
 
+    # Draw the current board
     board.draw
 
+    # Choose a valid spot
+    choice = "z"
+    until board.instance_variable_get("@#{choice}") == " "
+      puts "Where do you want to go?"
+      choice = gets.chomp.downcase
+    end
 
-
+    # Make turn
+    board.place choice, player
 
     # Change player
     if player == "X" then player = "O"
@@ -68,7 +76,7 @@ def game board
 
   end
 
-  puts "GAME OVER :: #{winner}"
+  puts "\n\nGAME OVER :: #{winner}"
 
 end
 
