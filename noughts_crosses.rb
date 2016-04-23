@@ -4,6 +4,7 @@
 
 X = "X"; O = "O"
 
+# The board the game is played on
 class Board
   # Create a board with each spot blank
   def initialize
@@ -18,26 +19,36 @@ class Board
   end
 
   # Place a peice on the board
-  def place peice, spot
-      if spot == "a"
-        @a = peice
-      elsif spot == "b"
-        @b = peice
-      elsif spot == "c"
-        @c = peice
-      elsif spot == "d"
-        @d = peice
-      elsif spot == "e"
-        @e = peice
-      elsif spot == "f"
-        @f = peice
-      elsif spot == "g"
-        @g = peice
-      elsif spot == "h"
-        @h = peice
-      elsif spot == "i"
-        @i = peice
-      end
+  def place spot, peice
+    # if spot == "a"
+    #   @a = peice
+    # elsif spot == "b"
+    #   @b = peice
+    # elsif spot == "c"
+    #   @c = peice
+    # elsif spot == "d"
+    #   @d = peice
+    # elsif spot == "e"
+    #   @e = peice
+    # elsif spot == "f"
+    #   @f = peice
+    # elsif spot == "g"
+    #   @g = peice
+    # elsif spot == "h"
+    #   @h = peice
+    # elsif spot == "i"
+    #   @i = peice
+    # end
+    instance_variable_set("@#{spot}", peice)
+  end
+
+end
+
+# A player, either X or O
+class Player
+  # Choose X or O
+  def initialize side
+    @side = side
   end
 
 end
@@ -45,5 +56,5 @@ end
 x = Board.new
 x.draw
 
-x.place(X, "i")
+x.place("a", X)
 x.draw
