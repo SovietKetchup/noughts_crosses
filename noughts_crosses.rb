@@ -1,6 +1,6 @@
 # Noughts and Crosses
 # SovietKetchup
-# v0.5.0
+# v0.5.1
 
 # The board the game is played on
 class Board
@@ -16,13 +16,7 @@ class Board
 
   # Place a O or X on the board
   def place spot, side
-    if instance_variable_get("@#{spot}") == " "
-      instance_variable_set("@#{spot}", side)
-      True
-    else
-      puts "\nNot a valid spot"
-      False
-    end
+    instance_variable_set("@#{spot}", side)
   end
 
 end
@@ -40,8 +34,10 @@ class Player
 
 end
 
+board = Board.new
+
 # Functions for turn taking logic
-def game
+def game board
 
   player = "X"
   rounds = 0
@@ -55,11 +51,21 @@ def game
     end
 
     # Announcement Text
-    puts "This is round ##{rounds + 1}"
-    puts "#{player}'s turn'"
+    puts "\nThis is round ##{rounds + 1}"
+    puts "#{player}'s turn"
+
+    board.draw
 
 
+
+
+    # Change player
+    if player == "X" then player = "O"
+    else player = "X" end
+
+    # Increment round counter
     rounds += 1
+
   end
 
   puts "GAME OVER :: #{winner}"
@@ -68,4 +74,4 @@ end
 
 # Run the game
 puts "The game will start with Xs"
-game
+game board
