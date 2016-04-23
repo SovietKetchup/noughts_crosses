@@ -2,15 +2,13 @@
 # SovietKetchup
 # v0.2.0
 
-X = "X"; O = "O"
+VALID = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
 
 # The board the game is played on
 class Board
   # Create a board with each spot blank
   def initialize
-    @a = " "; @b = " "; @c = " "
-    @d = " "; @f = " "; @e = " "
-    @g = " "; @h = " "; @i = " "
+    ('a'..'i').map{|l| instance_variable_set("@#{l}", " ")}
   end
 
   # Draw the board with each spot placed in
@@ -20,7 +18,19 @@ class Board
 
   # Place a peice on the board
   def place spot, peice
-    instance_variable_set("@#{spot}", peice)
+    if valid?(spot)
+      instance_variable_set("@#{spot}", peice)
+    else
+      puts "Not a valid spot"
+    end
+  end
+
+  def valid? spot
+    if instance_variable_get("@#{spot}") == " "
+      True
+    else
+      False
+    end
   end
 
 end
@@ -30,10 +40,12 @@ class Player
   # Choose X or O
   def initialize side
     @side = side
+
   end
 
   # Make the players move
-  def take_turn
+  def take_turn spot
+    puts "#{@side}'s turn."
   end
 
   # Check if player has won
@@ -42,8 +54,7 @@ class Player
 
 end
 
-x = Board.new
-x.draw
+board = Board.new
 
-x.place("a", X)
-x.draw
+carl_king_of_ducks = Player.new "X"
+carter_with_banana = Player.new "O"
